@@ -1,0 +1,33 @@
+python predict.py gpus='0' backbone="CSPDarknet-m" vis_thresh=0.5 load_model="weights/yolox-m.pth" img_dir='datasets/test'
+
+python train.py gpus='0' backbone="CSPDarknet-m" num_epochs=12 exp_id="coco_CSPDarknet-m_640x640" use_amp=True data_num_workers=1 batch_size=8
+
+
+测试自己训练的
+python predict.py gpus='0' backbone="CSPDarknet-m" vis_thresh=0.3 load_model="exp\coco_CSPDarknet-m_640x640/model_best.pth" img_dir='datasets/test'
+
+python predict.py gpus='0' backbone="YOLOF-m" vis_thresh=0.3 load_model="exp\coco_YOLOF_640x640/model_best.pth" img_dir='datasets/test'
+
+# 测试官方的模型
+#python evaluate.py gpus='0' backbone="CSPDarknet-m" load_model="./weights/yolox-m.pth" dataset_path="E:/Code/datasets/COCO2017/" test_ann="E:\Code\datasets\COCO2017\annotations/instances_val2017.json"
+
+
+# 训练COCO
+gpus='0'
+backbone="YOLOF-L"
+num_epochs=70
+exp_id="coco_YOLOF_640x640"
+use_amp=True
+data_num_workers=1
+batch_size=4
+resume=True
+
+# 训练pascal2coco
+gpus='0'
+backbone="Darknet53"
+num_epochs=70
+exp_id="Darknet53_pos2coco"
+use_amp=True
+data_num_workers=6
+batch_size=4
+dataset_path = "E:\Code\datasets\pascalvoc2014tococo"
